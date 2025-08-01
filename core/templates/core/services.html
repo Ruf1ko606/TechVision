@@ -1,0 +1,31 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block title %}Наши услуги | TechVision{% endblock %}
+
+{% block content %}
+<section class="page-header">
+    <div class="container">
+        <h1>Наши Услуги</h1>
+        <p>Мы превращаем бизнес-идеи в эффективные цифровые продукты.</p>
+    </div>
+</section>
+
+<section class="services-list">
+    <div class="container">
+        <div class="services-grid">
+            {% for service in services %}
+            <div class="service-card">
+                <img src="{{ service.image.url }}" alt="{{ service.title }}" class="service-image">
+                <div class="service-card-content">
+                    <h3>{{ service.title }}</h3>
+                    <p class="service-subtitle">{{ service.short_description }}</p>
+                    <a href="{{ service.get_absolute_url }}" class="service-details-link">Узнать больше →</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}
+

@@ -1,0 +1,71 @@
+{% extends 'core/base.html' %}
+
+{% block title %}IT-решения для вашего бизнеса | TechVision{% endblock %}
+
+{% block content %}
+<section class="hero">
+    <div class="container">
+        <h1><span id="typed-text"></span></h1>
+        <p class="subtitle">Мы разрабатываем кастомные веб-сервисы, которые решают задачи и приносят прибыль.</p>
+    </div>
+</section>
+
+<section class="advantages">
+    <div class="advantages-wrapper">
+        <!-- Технологичные фигуры на фоне -->
+        <div class="tech-shape shape-node node1"></div>
+        <div class="tech-shape shape-trace trace1"></div>
+        <div class="tech-shape shape-wireframe wireframe1"></div>
+        <div class="tech-shape shape-node node2"></div>
+        <div class="tech-shape shape-trace trace2"></div>
+        <div class="tech-shape shape-wireframe wireframe2"></div>
+
+        <div class="container">
+            <h2>Почему выбирают нас</h2>
+            <div class="swiper advantages-slider">
+                <div class="swiper-wrapper">
+                    <!-- Дублируем слайды для надежной работы бесконечного цикла -->
+                    {% for i in "123" %}
+                        {% for advantage in advantages %}
+                        <div class="swiper-slide">
+                            <div class="advantage-card">
+                                {% if advantage.icon_class %}
+                                <div class="advantage-icon">
+                                    <i class="{{ advantage.icon_class }}"></i>
+                                </div>
+                                {% endif %}
+                                <h3>{{ advantage.title }}</h3>
+                                <p>{{ advantage.description }}</p>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    {% endfor %}
+                </div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="featured-projects">
+    <div class="container">
+        <h2>Ключевые проекты</h2>
+        <div class="projects-grid">
+            {% for project in featured_projects %}
+            <a href="{{ project.get_absolute_url }}" class="project-card-link">
+                <div class="project-card">
+                    <img src="{{ project.image.url }}" alt="{{ project.title }}">
+                    <div class="project-overlay">
+                        <h3>{{ project.title }}</h3>
+                        <p>{{ project.short_description }}</p>
+                        <span class="view-case-btn">Смотреть кейс</span>
+                    </div>
+                </div>
+            </a>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}
+

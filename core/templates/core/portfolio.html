@@ -1,0 +1,51 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block title %}Портфолио | TechVision{% endblock %}
+
+{% block content %}
+
+<section class="page-header">
+    <div class="container">
+        <h1>Наши проекты</h1>
+        <p class="subtitle">Мы гордимся каждой работой и создаем решения, которые приносят реальную пользу.</p>
+    </div>
+</section>
+
+<section class="portfolio-gallery">
+    <div class="container">
+        <!-- БЛОК ФИЛЬТРАЦИИ С НОВЫМИ data-filter -->
+        <div class="filter-bar">
+            <!-- data-filter="*" означает "показать все" -->
+            <button data-filter="*" class="filter-btn active">Все проекты</button>
+            {% for service in services %}
+            <!-- data-filter теперь содержит селектор класса, например ".web-development" -->
+            <button data-filter=".{{ service.slug }}" class="filter-btn">{{ service.title }}</button>
+            {% endfor %}
+        </div>
+
+        <!-- Сетка проектов. Isotope будет работать с этим контейнером. -->
+        <div class="projects-grid">
+            {% for project in projects %}
+            <!-- КЛЮЧЕВОЕ ИЗМЕНЕНИЕ: категория теперь добавляется как класс -->
+            <a href="{{ project.get_absolute_url }}" class="project-card-link {{ project.service.slug|default:'none' }}">
+                <div class="project-card">
+                    <img src="{{ project.image.url }}" alt="{{ project.title }}">
+                    <div class="project-overlay">
+                        <h3>{{ project.title }}</h3>
+                        <p>{{ project.short_description }}</p>
+                        {% if project.service %}
+                            <span class="project-service-tag">{{ project.service.title }}</span>
+                        {% endif %}
+                    </div>
+                </div>
+            </a>
+            {% empty %}
+            <p class="no-projects-message">В данный момент в портфолио нет проектов.</p>
+            {% endfor %}
+        </div>
+    </div>
+<section>
+
+{% endblock %}
+

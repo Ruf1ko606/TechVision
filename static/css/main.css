@@ -1,0 +1,839 @@
+/* --- Глобальные переменные и стили --- */
+:root {
+    --primary-color: #007bff;
+    --dark-color: #2c3e50;
+    --light-color: #ffffff;
+    --gray-color: #f4f7f6;
+    --text-color: #333;
+}
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    margin: 0;
+    background-color: var(--light-color);
+    color: var(--text-color);
+    line-height: 1.6;
+}
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+h1, h2, h3 {
+    color: var(--dark-color);
+}
+h2 {
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 2.2em;
+}
+section {
+    padding: 60px 0;
+}
+
+/* --- Шапка сайта --- */
+.site-header {
+    background-color: var(--light-color);
+    padding: 20px 0;
+    border-bottom: 1px solid #e0e0e0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+.site-header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.logo {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: var(--dark-color);
+}
+.main-nav ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+}
+.main-nav li {
+    margin-left: 25px;
+}
+.main-nav a {
+    text-decoration: none;
+    color: var(--text-color);
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+.main-nav a:hover {
+    color: var(--primary-color);
+}
+
+/* --- Секция Hero --- */
+.hero {
+    background-color: var(--gray-color);
+    text-align: center;
+    padding: 80px 0;
+}
+/* Найди этот селектор и замени его */
+.hero h1 {
+    font-size: 4em;
+    margin-bottom: 20px;
+    /* ИСПРАВЛЕНИЕ: Заменяем height на min-height, чтобы избежать скачков */
+    min-height: 1.2em; 
+    /* Добавляем плавность для любых изменений размера */
+    transition: min-height 0.2s ease-in-out; 
+}
+
+
+.hero .subtitle {
+    font-size: 1.2em;
+    max-width: 600px;
+    margin: 0 auto 30px;
+}
+.cta-button {
+    display: inline-block;
+    background-color: var(--primary-color);
+    color: var(--light-color);
+    padding: 15px 30px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+.cta-button:hover {
+    background-color: #0056b3;
+}
+.typed-cursor {
+    color: var(--primary-color);
+    font-size: 1em;
+}
+
+/* --- Секция Преимуществ --- */
+.advantages {
+    background-color: var(--gray-color);
+}
+.advantages-wrapper {
+    position: relative;
+    overflow: hidden;
+}
+.advantages-slider {
+    padding: 40px 0;
+}
+.advantages-slider .swiper-slide {
+    width: 320px;
+    height: auto;
+    transition: transform 0.4s ease;
+}
+.advantages-slider .swiper-slide-active .advantage-card {
+    transform: scale(1.1);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+.advantage-card {
+    background-color: var(--light-color);
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 30px;
+    text-align: center;
+    height: 100%;
+    box-sizing: border-box;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+.advantage-icon {
+    font-size: 3em;
+    color: var(--primary-color);
+    margin-bottom: 20px;
+}
+.advantages-slider .swiper-button-next,
+.advantages-slider .swiper-button-prev {
+    color: var(--primary-color);
+    transition: transform 0.3s ease;
+}
+.advantages-slider .swiper-button-next:hover,
+.advantages-slider .swiper-button-prev:hover {
+    transform: scale(1.2);
+}
+
+/* --- Стили для технологичных фигур --- */
+.tech-shape {
+    position: absolute;
+    opacity: 0.15;
+    pointer-events: none;
+}
+@keyframes pulsate {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+}
+.shape-node {
+    background-color: var(--primary-color);
+    border-radius: 50%;
+    animation: pulsate 4s ease-in-out infinite;
+}
+.node1 { width: 15px; height: 15px; top: 20%; left: 10%; animation-duration: 3s; }
+.node2 { width: 10px; height: 10px; top: 80%; left: 85%; animation-duration: 5s; }
+@keyframes rotate-3d {
+    0% { transform: rotate3d(1, 1, 1, 0deg); }
+    100% { transform: rotate3d(1, 1, 1, 360deg); }
+}
+.shape-wireframe {
+    border: 2px solid var(--primary-color);
+    animation: rotate-3d 15s linear infinite;
+}
+.wireframe1 { width: 40px; height: 40px; top: 75%; left: 5%; animation-duration: 20s; }
+.wireframe2 { width: 60px; height: 60px; top: 15%; left: 90%; animation-duration: 25s; }
+
+/* --- Футер и юридические страницы --- */
+.site-footer {
+    background-color: var(--dark-color);
+    color: #a9aeb3;
+    padding: 50px 0 20px 0;
+}
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    margin-bottom: 40px;
+}
+.footer-about .logo, .footer-links h4, .footer-legal h4 {
+    color: var(--light-color);
+    margin-bottom: 15px;
+}
+.footer-links ul, .footer-legal ul {
+    list-style: none; padding: 0; margin: 0;
+}
+.footer-links li, .footer-legal li {
+    margin-bottom: 10px;
+}
+.footer-links a, .footer-legal a {
+    color: #a9aeb3;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+.footer-links a:hover, .footer-legal a:hover {
+    color: var(--light-color);
+}
+.footer-bottom {
+    border-top: 1px solid #444;
+    padding-top: 20px;
+    text-align: center;
+    font-size: 0.9em;
+}
+
+/* --- Баннер Cookies --- */
+.cookie-banner {
+    position: fixed; bottom: 0; left: 0; width: 100%;
+    background-color: rgba(44,62,80,0.95);
+    color: var(--light-color); padding: 20px;
+    box-sizing: border-box; display: flex;
+    justify-content: center; align-items: center;
+    gap: 20px; z-index: 1000;
+    transform: translateY(100%);
+    transition: transform 0.5s ease-in-out;
+}
+.cookie-banner p { margin: 0; }
+.cookie-banner a { color: var(--primary-color); text-decoration: underline; }
+
+/* --- Страница Услуги (список) --- */
+.page-header { background-color: var(--gray-color); text-align: center; padding: 60px 0; }
+.page-header h1 { color: var(--dark-color);font-size: 2.2em; }
+.page-header.service-detail-header {
+    color: var(--light-color);
+    padding: 80px 0;
+}
+.page-header.service-detail-header h1 { color: var(--light-color); }
+.services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
+.service-card {
+    background-color: #fff; border-radius: 8px; overflow: hidden;
+    display: flex; flex-direction: column;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+.service-card:hover { transform: translateY(-8px); box-shadow: 0 12px 25px rgba(0,0,0,0.1); }
+.service-image { width: 100%; height: 200px; object-fit: cover; }
+.service-card-content { padding: 30px; display: flex; flex-direction: column; flex-grow: 1; }
+.service-card-content p { flex-grow: 1; }
+.service-details-link {
+    color: var(--primary-color); text-decoration: none; font-weight: bold;
+    align-self: flex-start; transition: transform 0.3s ease;
+}
+.service-details-link:hover { transform: translateX(5px); }
+.service-subtitle {
+    font-size: 1.2em; font-weight: 500; margin-top: 10px;
+    margin-bottom: 25px; line-height: 1.4; font-style: italic;
+}
+.page-header.service-detail-header .service-subtitle { color: var(--light-color); }
+.call-to-action { background-color: var(--gray-color); text-align: center; padding: 50px; border-radius: 8px; }
+
+/* --- Страница Услуги (детальная) --- */
+.service-detail-content { padding: 60px 0; }
+.service-description h2 { text-align: center; }
+.service-description { font-size: 1.1em; line-height: 1.7; color: #333; }
+
+/* --- Страница О компании --- */
+.about-main { background: var(--gray-color); padding: 60px 0 40px 0; }
+.about-header { text-align: center; }
+.about-header h1 { font-size: 2.4em; margin-bottom: 12px; text-align: center; }
+.about-tagline { font-size: 1.2em; color: #444; margin-bottom: 25px; text-align: center; }
+.about-intro-row { display: flex; flex-wrap: wrap; gap: 40px; margin-bottom: 30px; }
+.about-mission, .about-values { flex: 1 1 300px; }
+.about-values ul { list-style: none; padding: 0; }
+.about-values li { margin-bottom: 8px; color: #333; }
+.about-history { background: #fff; padding: 60px 0 30px 0; }
+.about-history h2 { text-align: center; color: var(--primary-color); margin-bottom: 24px; }
+.about-history-content { max-width: 900px; margin: 0 auto; font-size: 1.14em; color: #333; line-height: 1.78; text-align: left; }
+.about-history-content p { margin-bottom: 18px; }
+@media (max-width: 800px) {
+    .about-header h1, .about-header, .about-tagline, .about-history h2, .about-history-content { text-align: center; }
+}
+.about-expertise { background: #fff; padding: 50px 0 30px 0; }
+.about-expertise-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 26px; }
+.about-expertise-row h3 { font-weight: 600; margin-bottom: 8px; color: var(--primary-color); }
+.about-team { background: var(--gray-color); padding: 70px 0 45px 0; }
+.about-team-row { display: flex; flex-wrap: wrap; gap: 48px; align-items: center; justify-content: center; }
+.team-photo-block { flex-shrink: 0; }
+.team-photo-block figure { margin: 0; display: flex; flex-direction: column; align-items: center; }
+.team-photo-large {
+    width: 350px; height: 350px; border-radius: 18px; object-fit: cover;
+    box-shadow: 0 6px 42px 4px rgba(44,62,80,0.11), 0 1px 6px rgba(70,130,180,0.05);
+    background: #eee; transition: transform 0.35s cubic-bezier(.22,1,.36,1);
+}
+.team-photo-large:hover { transform: scale(1.025) rotate(-1deg); box-shadow: 0 12px 48px 10px rgba(44,62,80,0.16); }
+.team-photo-block figcaption { margin-top: 14px; color: #6d6e74; font-size: 1.05em; letter-spacing: 0.01em; text-align: center; font-style: italic; }
+.team-info { flex: 1 1 350px; background: #fff; border-radius: 14px; box-shadow: 0 3px 18px rgba(44,62,80,.06); padding: 40px 32px 24px 32px; min-width: 270px; }
+.team-info p { font-size: 1.08em; color: #333; margin-bottom: 17px; line-height: 1.7; }
+.about-legal-list { margin-top: 14px; padding-left: 24px; color: #747c91; font-size: 0.998em; list-style: disc; }
+.about-advantages { background: #fff; padding: 60px 0 30px 0; }
+.advantages-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 30px; }
+
+/* --- Страница Контакты --- */
+/* --- Страница Контакты --- */
+.contacts-main { 
+    background: var(--gray-color); 
+}
+
+/* ВОТ КЛЮЧЕВОЕ ИСПРАВЛЕНИЕ ДЛЯ РАСПОЛОЖЕНИЯ В РЯД */
+.contacts-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    justify-content: center;
+    align-items: stretch;
+}
+
+.contacts-header { 
+    text-align: center; 
+    margin-bottom: 40px; 
+}
+.contacts-header .contacts-title { 
+    font-size: 2.7rem; 
+    font-weight: 700; 
+    color: var(--dark-color); 
+}
+.contacts-header .contacts-subtitle { 
+    font-size: 1.3rem; 
+    color: var(--dark-color); 
+    max-width: 650px; 
+    margin: 12px auto 0; 
+    line-height: 1.5; 
+}
+.contacts-info, 
+.contacts-form-block { 
+    flex: 1 1 420px; 
+    max-width: 500px; 
+    background: #fff; 
+    border-radius: 14px; 
+    padding: 38px; 
+    box-shadow: 0 2px 8px rgba(44, 62, 80, 0.07); 
+    display: flex; 
+    flex-direction: column; 
+}
+.contacts-info ul { 
+    list-style: none; 
+    padding: 0; 
+    margin: 0 0 24px 0; 
+    color: var(--dark-color); 
+    font-size: 1.15rem; 
+}
+.contacts-info ul li { 
+    margin-bottom: 10px; 
+    line-height: 1.5; 
+}
+.contacts-info a { 
+    color: var(--dark-color); 
+    text-decoration: underline; 
+    transition: color 0.3s; 
+}
+.contacts-info a:hover { 
+    color: var(--primary-color); 
+}
+.contacts-info .contacts-social { 
+    margin-top: auto; 
+    display: flex; 
+    justify-content: center; 
+    gap: 24px; 
+    font-size: 1.3rem; 
+}
+.contacts-info .contacts-social a { 
+    color: var(--dark-color); 
+    text-decoration: none; 
+    display: flex; 
+    align-items: center; 
+    gap: 6px; 
+    transition: color 0.3s; 
+}
+.contacts-info .contacts-social a:hover { 
+    color: var(--primary-color); 
+}
+.contacts-info .contacts-social i { 
+    font-size: 1.4rem; 
+}
+.contacts-form { 
+    display: flex; 
+    flex-direction: column; 
+    flex-grow: 1; 
+}
+.contacts-form p { 
+    margin: 0 0 1rem 0; 
+}
+.contacts-form label { 
+    display: none; 
+}
+.contacts-form input, 
+.contacts-form textarea {
+    width: 100%; 
+    box-sizing: border-box; 
+    border-radius: 8px; 
+    border: 1px solid #ccd6dd;
+    background: #f8f9fb; 
+    font-weight: 500; 
+    padding: 14px 16px; 
+    font-size: 1.15rem;
+    margin-bottom: 18px; 
+    transition: border-color 0.3s; 
+    resize: vertical;
+}
+.contacts-form input:focus, 
+.contacts-form textarea:focus { 
+    border-color: var(--primary-color); 
+    outline: none; 
+}
+.contacts-form textarea { 
+    min-height: 130px; 
+}
+.contacts-form button.cta-button {
+    width: auto; 
+    font-size: 1.15rem; 
+    font-weight: 700; 
+    padding: 12px 28px;
+    border: none; 
+    border-radius: 6px; 
+    cursor: pointer;
+}
+.contacts-form-block .contacts-policy { 
+    font-size: 0.9rem; 
+    color: #666; 
+    margin-top: 14px; 
+    text-align: right; 
+}
+.contacts-form-block .contacts-policy a { 
+    color: var(--primary-color); 
+    text-decoration: underline; 
+}
+.form-modal { 
+    display: none; 
+    position: fixed; 
+    background-color: rgba(0,0,0,0.5); 
+    z-index: 1100; 
+    top: 0; left: 0; 
+    width: 100vw; 
+    height: 100vh; 
+    align-items: center; 
+    justify-content: center; 
+}
+.form-modal .form-modal-content { 
+    background: #fff; 
+    padding: 30px 38px; 
+    border-radius: 12px; 
+    position: relative; 
+    max-width: 400px; 
+    text-align: center; 
+    font-size: 1.15rem; 
+    color: var(--dark-color); 
+}
+.form-modal .form-modal-content p { 
+    margin: 0; 
+    line-height: 1.4; 
+}
+.form-modal .form-modal-content span.form-modal-close { 
+    cursor: pointer; 
+    font-size: 2.4rem; 
+    font-weight: bold; 
+    color: #999; 
+    position: absolute; 
+    top: 10px; 
+    right: 14px; 
+    transition: color 0.25s; 
+}
+.form-modal .form-modal-content span.form-modal-close:hover { 
+    color: var(--primary-color); 
+}
+.contacts-map-section { 
+    padding-top: 0; 
+}
+.contacts-map { 
+    border-radius: 14px; 
+    overflow: hidden; 
+    margin-bottom: 14px; 
+}
+.contacts-map-address { 
+    display: block; 
+    width: 100%; 
+    text-align: center; 
+    margin: 22px 0 0 0; 
+    font-size: 1.2em; 
+    font-weight: 600; 
+    color: var(--dark-color); 
+    line-height: 1.5; 
+}
+/* === ИЗМЕНЕНИЯ ЗДЕСЬ: Стили для блока "Часы работы" (крупно и по центру) === */
+.contacts-hours-large {
+  margin: 40px 0; /* Увеличиваем отступы, чтобы блок дышал */
+  text-align: center; /* Выравниваем все содержимое по центру */
+}
+
+.contacts-hours-large h3 {
+  font-size: 1.6em; /* Делаем заголовок крупным и заметным */
+  font-weight: 700;
+  margin-bottom: 20px; /* Отступ под заголовком */
+}
+
+.contacts-hours-large table {
+  margin: 0 auto; /* Центрируем саму таблицу внутри блока */
+  font-size: 1.25em; /* Увеличиваем шрифт дней и времени */
+  width: auto; /* Ширина таблицы будет по содержимому */
+}
+
+.contacts-hours-large td {
+  padding: 8px 15px; /* Добавляем "воздуха" в ячейки */
+}
+
+.contacts-hours-large td:first-child {
+  font-weight: 600; /* Дни недели делаем жирнее */
+  text-align: right;
+}
+
+.contacts-hours-large td:last-child {
+  font-weight: 500;
+  text-align: left;
+}
+.contacts-section-title { text-align: center; font-size: 2em; font-weight: 700; margin-bottom: 28px; color: var(--dark-color); letter-spacing: 0.01em; }
+
+
+
+/* --- Унифицированные стили для проектов (Портфолио и Главная) --- */
+.portfolio-gallery, .related-projects-section, .featured-projects { background-color: var(--gray-color); }
+.filter-bar { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-bottom: 50px; }
+.filter-btn { padding: 10px 20px; border-radius: 20px; text-decoration: none; color: var(--text-color); background-color: var(--light-color); border: 1px solid #ddd; transition: all 0.3s; cursor: pointer; font-family: inherit; font-size: 1em; }
+.filter-btn:hover { background: #e9ecef; border-color: #ccc; }
+.filter-btn.active { background: var(--primary-color); color: #fff; border-color: var(--primary-color); }
+.no-projects-message { text-align: center; font-size: 1.1em; color: #666; padding: 40px 0; width: 100%; }
+.projects-grid { margin: 0 -10px; display: flex; flex-wrap: wrap; }
+.project-card-link { width: 33.333%; padding: 0 10px; margin-bottom: 36px; box-sizing: border-box; display: block; text-decoration: none; color: inherit; transition: opacity 0.36s cubic-bezier(0.4, 0.4, 0.1, 1); }
+.isotope-hidden.project-card-link { opacity: 0; pointer-events: none; }
+.project-card { background: #fff; border-radius: 14px; box-shadow: 0 4px 16px rgba(44,62,80,0.10); position: relative; overflow: hidden; display: block; transition: box-shadow 0.32s cubic-bezier(.22,1,.36,1), transform 0.32s cubic-bezier(.22,1,.36,1); }
+.project-card-link:hover .project-card { box-shadow: 0 16px 36px rgba(44,62,80,0.18); transform: translateY(-10px) scale(1.029); }
+.project-card img { width: 100%; aspect-ratio: 1.1 / 1; object-fit: cover; display: block; transition: transform 0.32s cubic-bezier(.22,1,.36,1); }
+.project-card-link:hover .project-card img { transform: scale(1.045); }
+.project-overlay { position: absolute; left: 0; right: 0; bottom: 0; background: linear-gradient(to top, rgba(44,62,80,0.965), rgba(44,62,80,0.008)); color: #fff; padding: 30px 18px 16px 18px; opacity: 0; transform: translateY(26px); transition: opacity 0.32s, transform 0.32s; font-size: 1.13em; }
+.project-card-link:hover .project-overlay { opacity: 1; transform: translateY(0); }
+.project-overlay h3 { margin: 0 0 11px; font-size: 1.18em; font-weight: 700; color: white; }
+.project-overlay p { margin-bottom: 13px; line-height: 1.51; font-size: 1em; }
+.projects-grid { transition: height 0.4s cubic-bezier(0.35,0.85,0.25,1); }
+
+/* === НОВЫЕ СТИЛИ ДЛЯ СТРАНИЦЫ ПРОЕКТА === */
+.case-header {
+    padding: 80px 0;
+    color: white;
+    text-align: center;
+    background-size: cover;
+    background-position: center;
+}
+.case-header h1 {
+    color: var(--light-color);
+    font-size: 3em;
+}
+.case-category {
+    display: inline-block;
+    padding: 5px 15px;
+    background: rgba(255, 255, 255, 0.19);
+    border-radius: 15px;
+    margin-bottom: 15px;
+    font-size: 0.9em;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+/* Улучшаем основную сетку страницы */
+.case-body {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 60px; /* Увеличиваем расстояние между колонками */
+    align-items: flex-start; /* Колонки начинаются с самого верха */
+    padding-top: 80px;
+    padding-bottom: 80px;
+}
+
+.case-content {
+    flex: 1 1 65%; /* Основной контент занимает ~2/3 */
+    min-width: 300px;
+}
+
+.case-sidebar {
+    flex: 1 1 30%; /* Сайдбар занимает ~1/3 */
+    position: sticky;
+    top: 120px; /* Сайдбар будет "липким" при скролле */
+    align-self: flex-start;
+}
+
+/* Улучшаем заголовки секций */
+.case-section {
+    margin-bottom: 60px;
+}
+.case-section h2 {
+    display: flex;
+    align-items: center;
+    gap: 15px; /* Отступ между иконкой и текстом */
+    text-align: left;
+    font-size: 2em;
+    margin-bottom: 25px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--primary-color);
+}
+.case-section h2 i {
+    color: var(--primary-color);
+}
+
+/* Улучшаем основной текст */
+.case-text {
+    font-size: 1.1em;
+    line-height: 1.8;
+    color: #444;
+}
+
+/* Улучшаем галерею */
+.case-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+}
+.case-gallery a img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 12px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+}
+.case-gallery a:hover img {
+    transform: scale(1.05);
+    box-shadow: 0 10px 25px rgba(44, 62, 80, 0.15);
+}
+
+/* Стили для красивой карточки отзыва */
+.testimonial-card {
+    background-color: var(--gray-color);
+    border: 1px solid #e8e8e8;
+    border-radius: 16px;
+    padding: 40px;
+    margin-top: 20px;
+}
+.testimonial-quote {
+    margin: 0;
+    border-left: none; /* Убираем старую границу */
+    padding: 0;
+    background: none;
+    font-style: normal;
+}
+.testimonial-quote p {
+    font-size: 1.25em;
+    font-style: italic;
+    line-height: 1.6;
+    margin: 0 0 25px 0;
+    color: #333;
+}
+.testimonial-quote footer {
+    margin-top: 0;
+    font-style: normal;
+    text-align: left;
+    font-size: 1.1em;
+}
+.testimonial-quote footer strong {
+    color: var(--dark-color);
+}
+
+/* Карточка призыва к действию */
+.cta-card {
+    background: var(--dark-color);
+    color: white;
+    padding: 30px;
+    border-radius: 10px;
+    text-align: center;
+}
+.cta-card h3 {
+    color: white;
+}
+
+/* --- Анимации для "О компании" --- */
+.fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.7s ease-out, transform 0.7s ease-out; }
+.fade-in.active { opacity: 1; transform: translateY(0); }
+.slide-left { opacity: 0; transform: translateX(-30px); transition: opacity 0.7s ease-out, transform 0.7s ease-out; }
+.slide-left.active { opacity: 1; transform: translateX(0); }
+.slide-right { opacity: 0; transform: translateX(30px); transition: opacity 0.7s ease-out, transform 0.7s ease-out; }
+.slide-right.active { opacity: 1; transform: translateX(0); }
+@keyframes gentle-swing { 0%, 100% { transform: rotate(0deg); } 50% { transform: rotate(5deg); } }
+.advantage-icon.animate { animation: gentle-swing 3s ease-in-out infinite; }
+
+/* --- НОВЫЕ СТИЛИ: Блок "Этапы работы" --- */
+.service-process { background-color: var(--gray-color); padding: 80px 0; }
+.service-process h2 { font-size: 2.4em; margin-bottom: 60px; }
+.process-steps-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; }
+.step-card { background-color: #ffffff; border-radius: 12px; padding: 30px 25px; text-align: center; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05); transition: transform 0.3s ease, box-shadow 0.3s ease; }
+.step-card:hover { transform: translateY(-10px); box-shadow: 0 12px 25px rgba(0, 0, 0, 0.1); }
+.step-icon { font-size: 2.8em; color: var(--primary-color); margin-bottom: 20px; }
+.step-title { font-size: 1.2em; font-weight: 700; color: var(--dark-color); margin-bottom: 15px; min-height: 2.4em; }
+.step-desc { font-size: 0.95em; line-height: 1.6; color: #444; }
+
+/* --- Адаптивность для всех блоков --- */
+@media (max-width: 1024px) {
+    .process-steps-grid { grid-template-columns: repeat(2, 1fr); }
+    .project-card-link { width: 50%; }
+}
+@media (max-width: 768px) {
+    .contacts-grid { flex-direction: column; }
+    .contacts-grid > div { max-width: 100%; }
+}
+@media (max-width: 600px) {
+    .process-steps-grid { grid-template-columns: 1fr; }
+    .step-title { min-height: auto; }
+    .project-card-link { width: 100%; padding: 0; }
+    .projects-grid { margin: 0; }
+    .contacts-map-address { font-size: 1em; }
+    .contacts-hours-block table { font-size: 1.07em; }
+}
+
+/* ... (весь ваш предыдущий CSS код до этого блока) ... */
+
+/* ==========================================================================
+   НОВЫЕ СТИЛИ: Анимации и Модальное окно
+   ========================================================================== */
+/* --- НОВЫЕ СТИЛИ: Блок "Этапы работы" --- */
+.service-process { background-color: var(--gray-color); padding: 80px 0; overflow: hidden; /* Важно для анимации */ }
+.service-process h2 { font-size: 2.4em; margin-bottom: 60px; }
+.process-steps-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; }
+.step-card {
+    background-color: #ffffff; border-radius: 12px; padding: 30px 25px; text-align: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05); transition: transform 0.3s ease, box-shadow 0.3s ease;
+    opacity: 0; /* Изначально карточки невидимы */
+}
+.step-card:hover { transform: translateY(-10px); box-shadow: 0 12px 25px rgba(0, 0, 0, 0.1); }
+.step-icon { font-size: 2.8em; color: var(--primary-color); margin-bottom: 20px; }
+.step-title { font-size: 1.2em; font-weight: 700; color: var(--dark-color); margin-bottom: 15px; min-height: 2.4em; }
+.step-desc { font-size: 0.95em; line-height: 1.6; color: #444; }
+
+/* ==========================================================================
+   НОВЫЕ СТИЛИ: Анимации и Модальное окно
+   ========================================================================== */
+
+/* --- ИСПРАВЛЕННЫЕ Анимации для этапов работы --- */
+@keyframes slide-in-elliptic-top-left {
+  0% { transform: translate(-200px, -200px) scale(0) rotateY(60deg); transform-origin: top left; opacity: 0; }
+  100% { transform: translate(0, 0) scale(1) rotateY(0); transform-origin: top left; opacity: 1; }
+}
+@keyframes slide-in-elliptic-top-right {
+  0% { transform: translate(200px, -200px) scale(0) rotateY(-60deg); transform-origin: top right; opacity: 0; }
+  100% { transform: translate(0, 0) scale(1) rotateY(0); transform-origin: top right; opacity: 1; }
+}
+@keyframes slide-in-elliptic-bottom-left {
+  0% { transform: translate(-200px, 200px) scale(0) rotateY(60deg); transform-origin: bottom left; opacity: 0; }
+  100% { transform: translate(0, 0) scale(1) rotateY(0); transform-origin: bottom left; opacity: 1; }
+}
+@keyframes slide-in-elliptic-bottom-right {
+  0% { transform: translate(200px, 200px) scale(0) rotateY(-60deg); transform-origin: bottom right; opacity: 0; }
+  100% { transform: translate(0, 0) scale(1) rotateY(0); transform-origin: bottom right; opacity: 1; }
+}
+
+.process-steps-grid.start-animation .step-card:nth-child(1) { animation: slide-in-elliptic-top-left 0.7s cubic-bezier(0.250, 0.460, 0.450, 0.940) both; }
+.process-steps-grid.start-animation .step-card:nth-child(2) { animation: slide-in-elliptic-top-right 0.7s cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.15s both; }
+.process-steps-grid.start-animation .step-card:nth-child(3) { animation: slide-in-elliptic-bottom-left 0.7s cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.2s both; }
+.process-steps-grid.start-animation .step-card:nth-child(4) { animation: slide-in-elliptic-bottom-right 0.7s cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.35s both; }
+
+/* --- Стили для модального окна --- */
+.modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(44, 62, 80, 0.85); display: none; align-items: center; justify-content: center; z-index: 2000; }
+.modal-content { background-color: #ffffff; padding: 30px 40px; border-radius: 12px; width: 90%; max-width: 480px; position: relative; box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
+.modal-close { position: absolute; top: 10px; right: 15px; font-size: 28px; font-weight: bold; color: #aaa; cursor: pointer; background: none; border: none; }
+.modal-content h2 { text-align: center; margin-top: 0; margin-bottom: 30px; }
+
+@keyframes roll-in-left { 0% { transform: translateX(-800px) rotate(-540deg); opacity: 0; } 100% { transform: translateX(0) rotate(0deg); opacity: 1; } }
+@keyframes roll-out-right { 0% { transform: translateX(0) rotate(0deg); opacity: 1; } 100% { transform: translateX(800px) rotate(540deg); opacity: 0; } }
+.modal-content.roll-in { animation: roll-in-left 0.8s cubic-bezier(0.230, 1.000, 0.320, 1.000) both; }
+.modal-content.roll-out { animation: roll-out-right 0.8s cubic-bezier(0.550, 0.085, 0.680, 0.530) both; }
+
+#consultation-form .form-group { margin-bottom: 20px; }
+#consultation-form label { display: block; margin-bottom: 8px; font-weight: 600; color: #333; }
+#consultation-form input { width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box; font-size: 1em; }
+#consultation-form input:focus { border-color: var(--primary-color); outline: none; box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.2); }
+#consultation-form input:invalid:not(:placeholder-shown) { border-color: #dc3545; }
+#consultation-form button[type="submit"] { width: 100%; padding: 15px; font-size: 1.1em; }
+#consultation-form button:disabled { background-color: #a9aeb3; cursor: not-allowed; }
+
+/* --- Адаптивность --- */
+@media (max-width: 1024px) {
+    .process-steps-grid { grid-template-columns: repeat(2, 1fr); }
+    /* ... прочая адаптивность ... */
+}
+
+
+/* Скопируй и добавь этот код в САМЫЙ КОНЕЦ файла main.css */
+
+/* --- Стили для модального окна УСПЕХА --- */
+#success-animation-modal .modal-content {
+    text-align: center;
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+.success-icon {
+    font-size: 4em;
+    color: #28a745; /* Зеленый цвет успеха */
+    margin-bottom: 20px;
+}
+#success-animation-modal h3 {
+    font-size: 1.8em;
+    margin-bottom: 10px;
+}
+#success-animation-modal p {
+    font-size: 1.1em;
+    color: #444;
+}
+
+/* Стили для холста анимации */
+#particle-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* Чтобы не мешал кликать */
+    z-index: 3001; /* Должен быть выше, чем фон, но ниже чем контент, если нужно */
+}
+
+/* Вставь этот код в конец файла main.css */
+
+/* --- Анимации для страницы проекта --- */
+.anim-on-scroll-project {
+    opacity: 0; /* Изначально делаем блоки невидимыми */
+}
+
+

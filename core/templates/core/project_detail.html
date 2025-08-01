@@ -1,0 +1,86 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block title %}{{ project.title }} | TechVision{% endblock %}
+
+{% block content %}
+<!-- Шапка проекта (без изменений) -->
+<section class="case-header" style="background-image: linear-gradient(rgba(44, 62, 80, 0.7), rgba(44, 62, 80, 0.7)), url('{{ project.image.url }}');">
+    <div class="container">
+        {% if project.service %}
+        <div class="case-category">{{ project.service.title }}</div>
+        {% endif %}
+        <h1>{{ project.title }}</h1>
+    </div>
+</section>
+
+<!-- Обновленное тело проекта -->
+<div class="case-body container">
+    <!-- Основной контент (левая, более широкая колонка) -->
+    <main class="case-content">
+        <!-- ЗАДАЧА КЛИЕНТА -->
+        {% if project.challenge %}
+        <section class="case-section anim-on-scroll-project" data-animation="animate__zoomInLeft">
+            <h2><i class="fas fa-bullseye"></i> Задача клиента</h2>
+            <div class="case-text">{{ project.challenge|linebreaks }}</div>
+        </section>
+        {% endif %}
+
+        <!-- НАШЕ РЕШЕНИЕ -->
+        {% if project.solution %}
+        <section class="case-section anim-on-scroll-project" data-animation="animate__zoomInRight">
+            <h2><i class="fas fa-lightbulb"></i> Наше решение</h2>
+            <div class="case-text">{{ project.solution|linebreaks }}</div>
+        </section>
+        {% endif %}
+        
+        <!-- РЕЗУЛЬТАТ -->
+        {% if project.outcome %}
+        <section class="case-section anim-on-scroll-project" data-animation="animate__zoomInDown">
+            <h2><i class="fas fa-chart-line"></i> Результат</h2>
+            <div class="case-text">{{ project.outcome|linebreaks }}</div>
+        </section>
+        {% endif %}
+
+        <!-- ГАЛЕРЕЯ ПРОЕКТА -->
+        {% if project.gallery_images.all %}
+        <section class="case-section anim-on-scroll-project" data-animation="animate__fadeInUp">
+            <h2><i class="fas fa-images"></i> Галерея проекта</h2>
+            <div class="case-gallery">
+                {% for image in project.gallery_images.all %}
+                <a href="{{ image.image.url }}" data-fancybox="gallery" data-caption="{{ image.caption }}">
+                    <img src="{{ image.image.url }}" alt="{{ image.caption|default:'Изображение из галереи проекта' }}">
+                </a>
+                {% endfor %}
+            </div>
+        </section>
+        {% endif %}
+        
+        <!-- ОТЗЫВ КЛИЕНТА (ПЕРЕНЕСЕН ВНИЗ И ГОТОВ К АНИМАЦИИ) -->
+        {% if project.testimonial %}
+        <section class="case-section anim-on-scroll-project" data-animation="animate__fadeInUp">
+             <div class="testimonial-card">
+                <h2><i class="fas fa-quote-left"></i> Отзыв клиента</h2>
+                <blockquote class="testimonial-quote">
+                    <p>"{{ project.testimonial.text }}"</p>
+                    <footer>
+                        <strong>{{ project.testimonial.author_name }}</strong>, {{ project.testimonial.author_position }}
+                    </footer>
+                </blockquote>
+            </div>
+        </section>
+        {% endif %}
+    </main>
+
+    <!-- Сайдбар (правая, более узкая колонка) -->
+    <aside class="case-sidebar">
+        <!-- Призыв к действию (Теперь в сайдбаре) -->
+        <div class="cta-card">
+            <h3>Понравился проект?</h3>
+            <p>Давайте создадим что-то выдающееся и для вашего бизнеса!</p>
+            <a href="{% url 'contacts' %}" class="cta-button">Обсудить проект</a>
+        </div>
+    </aside>
+</div>
+{% endblock %}
+

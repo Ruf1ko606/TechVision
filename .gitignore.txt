@@ -1,0 +1,17 @@
+# Файл конфигурации виртуального окружения
+.env
+
+# База данных
+db.sqlite3
+
+# Папки Python
+__pycache__/
+venv/
+
+# Папки Django для статики и медиа
+staticfiles/
+media/
+
+# Файлы IDE
+.idea/
+.vscode/

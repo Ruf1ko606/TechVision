@@ -1,0 +1,99 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block title %}{{ service.title }} | TechVision{% endblock %}
+
+{% block content %}
+<section class="page-header service-detail-header" style="background-image: linear-gradient(rgba(44, 62, 80, 0.7), rgba(44, 62, 80, 0.7)), url('{{ service.image.url }}');">
+    <div class="container">
+        <h1>{{ service.title }}</h1>
+    </div>
+</section>
+
+<section class="service-detail-content">
+    <div class="container">
+        <div class="service-description">
+            <h2>Подробное описание</h2>
+            {{ service.full_description|linebreaks }}
+        </div>
+    </div>
+</section>
+
+{% if process_steps %}
+<section class="service-process">
+  <div class="container">
+    <h2>Как мы работаем</h2>
+    <div class="process-steps-grid anim-on-scroll">
+      {% for step in process_steps %}
+      <div class="step-card">
+        {% if step.icon %}<div class="step-icon"><i class="{{ step.icon }}"></i></div>{% endif %}
+        <h3 class="step-title">{{ step.title }}</h3>
+        <p class="step-desc">{{ step.desc }}</p>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
+
+<section class="related-projects-section">
+    <div class="container">
+        {% if related_projects %}
+        <h2>Проекты по этой услуге</h2>
+        <div class="projects-grid">
+            {% for project in related_projects %}
+            <a href="{{ project.get_absolute_url }}" class="project-card-link">
+                <div class="project-card">
+                    <img src="{{ project.image.url }}" alt="{{ project.title }}">
+                    <div class="project-overlay">
+                        <h3>{{ project.title }}</h3>
+                        <p>{{ project.short_description }}</p>
+                    </div>
+                </div>
+            </a>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        <div class="call-to-action">
+            <h2>Готовы обсудить ваш проект?</h2>
+            <p>Свяжитесь с нами, и мы предложим лучшее решение для вашей задачи.</p>
+            <button id="open-consultation-modal" class="cta-button">Заказать консультацию</button>
+        </div>
+    </div>
+</section>
+
+<!-- МОДАЛЬНОЕ ОКНО ДЛЯ ЗАПОЛНЕНИЯ ФОРМЫ -->
+<div id="consultation-modal" class="modal-overlay">
+    <div class="modal-content">
+        <button id="close-consultation-modal" class="modal-close">&times;</button>
+        <h2>Заказать консультацию</h2>
+        <form id="consultation-form" novalidate>
+            <!-- ДОБАВЛЯЕМ CSRF ТОКЕН ДЛЯ БЕЗОПАСНОСТИ -->
+            {% csrf_token %}
+            <div class="form-group"><input type="text" id="fullname" name="fullname" placeholder="Имя и Отчество *" required pattern="^[А-Яа-яЁё\s\-]+$"></div>
+            <div class="form-group"><input type="text" id="company" name="company" placeholder="Название Компании *" required></div>
+            <div class="form-group"><input type="tel" id="phone" name="phone" placeholder="Номер телефона * (+7...)" required pattern="^(\+7|8)\d{10}$"></div>
+            <div class="form-group"><input type="email" id="email" name="email" placeholder="Email *" required></div>
+            <button type="submit" id="submit-consultation" class="cta-button" disabled>Отправить</button>
+        </form>
+    </div>
+</div>
+
+<!-- НОВОЕ МОДАЛЬНОЕ ОКНО УСПЕХА С ХОЛСТОМ ДЛЯ АНИМАЦИИ -->
+<div id="success-animation-modal" class="modal-overlay">
+    <div class="modal-content success-modal-content">
+        <!-- Элемент для "снимка" -->
+        <div id="success-content-to-capture">
+            <div class="success-icon"><i class="fas fa-check-circle"></i></div>
+            <h3>Спасибо!</h3>
+            <p>Ваша заявка успешно отправлена.<br>Мы свяжемся с вами в ближайшее время.</p>
+        </div>
+        <!-- Кнопка закрытия вынесена наружу, чтобы не попадать на "снимок" -->
+        <button id="close-success-modal" class="modal-close">&times;</button>
+    </div>
+    <!-- Холст для рисования частиц, позиционирован абсолютно -->
+    <canvas id="particle-canvas"></canvas>
+</div>
+{% endblock %}
+
