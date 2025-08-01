@@ -1100,3 +1100,74 @@ section {
     }
     .step-title { min-height: auto; }
 }
+
+/* ==========================================================================
+   КОМПЛЕКСНОЕ УМЕНЬШЕНИЕ ШРИФТОВ ДЛЯ МОБИЛЬНЫХ
+   ========================================================================== */
+
+/* Этот блок кода нужно вставить в самый конец вашего файла main.css */
+
+@media (max-width: 768px) {
+    /* Устанавливаем базовый размер шрифта для мобильных.
+       Все `rem` и `em` единицы будут пересчитаны от этого значения. */
+    html {
+        font-size: 15px;
+    }
+
+    body {
+        line-height: 1.55; /* Немного корректируем межстрочный интервал для читаемости */
+    }
+
+    /* Уменьшаем общие заголовки */
+    h1, .hero h1, .case-header h1 {
+        font-size: 2.2rem; /* Станет ~33px */
+    }
+    h2, .case-section h2, .contacts-header .contacts-title {
+        font-size: 1.8rem; /* Станет ~27px */
+    }
+    h3 {
+        font-size: 1.4rem; /* Станет ~21px */
+    }
+    
+    /* Уменьшаем текст в открытом мобильном меню */
+    .main-nav a {
+        font-size: 1.5rem; /* Станет ~22.5px */
+    }
+
+    /* Уменьшаем текст в формах, который был слишком крупным */
+    .contacts-form input, 
+    .contacts-form textarea,
+    .contacts-form-block .contacts-policy {
+        font-size: 1rem; /* Станет 15px, стандартный текст */
+        padding: 12px;
+    }
+    
+    .contacts-form button.cta-button {
+        font-size: 1rem;
+    }
+
+    /* Уменьшаем текст в блоке с контактами */
+    .contacts-info ul li,
+    .contacts-info .contacts-social a,
+    .contacts-hours-large table {
+        font-size: 1rem; /* 15px */
+    }
+    
+    .contacts-hours-large td {
+        padding: 6px 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    /* Дополнительные корректировки для самых маленьких экранов */
+    html {
+        font-size: 14px; /* Еще немного уменьшаем базу до 14px */
+    }
+
+    h1, .hero h1, .case-header h1 {
+        font-size: 2rem; /* Станет ~28px */
+    }
+    h2, .case-section h2 {
+        font-size: 1.6rem; /* Станет ~22.4px */
+    }
+}
