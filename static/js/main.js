@@ -336,5 +336,19 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
+	
+	const hamburgerButton = document.getElementById('hamburger-button');
+    const mainNav = document.getElementById('main-nav');
+    
+    if (hamburgerButton && mainNav) {
+        hamburgerButton.addEventListener('click', () => {
+            // Переключаем классы для анимации кнопки и показа меню
+            hamburgerButton.classList.toggle('is-active');
+            mainNav.classList.toggle('is-active');
+            
+            // Запрещаем скролл страницы, когда меню открыто
+            document.body.classList.toggle('menu-open');
+        });
+    }
 
 });

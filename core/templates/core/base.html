@@ -15,7 +15,9 @@
     <header class="site-header">
         <div class="container">
             <a href="{% url 'index' %}" class="logo">TechVision</a>
-            <nav class="main-nav">
+            
+            <!-- ИЗМЕНЕНИЕ 1: Добавлен id="main-nav" -->
+            <nav class="main-nav" id="main-nav">
                 <ul>
                     <li><a href="{% url 'index' %}">Главная</a></li>
                     <li><a href="{% url 'about' %}">О компании</a></li>
@@ -24,6 +26,13 @@
                     <li><a href="{% url 'contacts' %}">Контакты</a></li>
                 </ul>
             </nav>
+
+            <!-- ИЗМЕНЕНИЕ 2: Добавлена кнопка "гамбургер" -->
+            <button class="hamburger" id="hamburger-button" aria-label="Открыть меню">
+                <span class="hamburger-box">
+                    <span class="hamburger-inner"></span>
+                </span>
+            </button>
         </div>
     </header>
 
@@ -78,4 +87,3 @@
     <script src="{% static 'js/main.js' %}"></script>
 </body>
 </html>
-
