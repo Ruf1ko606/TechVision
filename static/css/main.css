@@ -837,3 +837,85 @@ section {
 }
 
 
+/* ==========================================================================
+   ФИНАЛЬНАЯ ОПТИМИЗАЦИЯ ДЛЯ МОБИЛЬНЫХ УСТРОЙСТВ
+   ========================================================================== */
+
+@media (max-width: 768px) {
+    /* --- Уменьшаем общие отступы --- */
+    .container {
+        padding: 0 15px;
+    }
+    section, .case-body {
+        padding: 40px 0;
+    }
+
+    /* --- Оптимизируем шапку и главный экран --- */
+    .site-header .container {
+        flex-direction: column;
+        gap: 15px;
+    }
+    .hero h1 {
+        font-size: 2.5em; /* Значительно уменьшаем заголовок */
+    }
+    .hero .subtitle {
+        font-size: 1.1em;
+    }
+
+    /* --- Сетка проектов в 2 колонки --- */
+    .project-card-link {
+        width: 50%;
+    }
+    .project-overlay { /* Делаем текст на карточке крупнее для мобильных */
+        font-size: 1em;
+        padding: 20px 15px 15px 15px;
+    }
+
+    /* --- Детальная страница проекта --- */
+    .case-body {
+        flex-direction: column; /* Ставим контент над сайдбаром */
+        gap: 40px;
+    }
+    .case-sidebar {
+        position: static; /* Отключаем "прилипание" сайдбара */
+        top: auto;
+        width: 100%;
+    }
+    .case-header h1 {
+        font-size: 2.2em;
+    }
+
+    /* --- Контакты --- */
+    .contacts-info, .contacts-form-block {
+        padding: 25px; /* Уменьшаем внутренние отступы на карточках */
+    }
+}
+
+@media (max-width: 480px) {
+    /* --- Стили для самых маленьких экранов (как iPhone 11) --- */
+    h2 {
+        font-size: 1.8em;
+    }
+    .logo {
+        font-size: 1.3em;
+    }
+    
+    /* --- Сетка проектов в 1 колонку --- */
+    .project-card-link {
+        width: 100%;
+        padding: 0;
+        margin-bottom: 25px;
+    }
+    .projects-grid {
+        margin: 0;
+    }
+
+    /* --- Услуги и Этапы работы в 1 колонку --- */
+    .services-grid,
+    .process-steps-grid {
+        grid-template-columns: 1fr;
+    }
+    .step-title {
+        min-height: auto;
+    }
+}
